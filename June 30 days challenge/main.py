@@ -102,3 +102,29 @@ class SolutionFive:
 # obj = Solution(w)
 # param_1 = obj.pickIndex()
 
+        # day six
+
+class SolutionSix:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        people.sort(key= lambda x:(x[1], x[0]) )
+        
+        
+        result = []
+        for height, number in people:
+            if len(result) == 0:
+                result. append((height, number))
+                continue 
+                
+            count = 0
+            for index, (qheight, qnumber) in enumerate(result):
+                if qheight >= height:
+                    count += 1
+                if count > number:
+                    result.insert(index, (height, number))
+                    break
+                    
+            else:
+                result.append((height,number))
+                
+        return result
+
