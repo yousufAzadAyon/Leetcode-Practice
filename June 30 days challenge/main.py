@@ -141,3 +141,34 @@ class SolutionSixAlternative:
             
         return result
 
+
+
+        # day seven
+
+class SolutionSeven:
+    def change(self, amount: int, coins: List[int]) -> int:
+        size = len(coins)
+        cache = [[0] * (amount + 1) for _ in range(size + 1)]
+        calculated = [[False] * (amount + 1) for _ in range(size + 1)]
+        def count_change(target, index):
+            if target == 0:
+                return 1
+            if target < 0:
+                return 0
+            if index == size:
+                return 0
+            if calculated [index][target]:
+                return cache[index][target]
+            
+            total = 0 
+            total += count_change(target - coins[index], index)
+            total += count_change(target, index + 1)
+            
+            calculated[index][target] = True
+            cache[index][target] = total 
+            
+            return total 
+        
+        return count_change(amount, 0)
+
+
