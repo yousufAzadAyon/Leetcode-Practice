@@ -172,3 +172,13 @@ class SolutionSeven:
         return count_change(amount, 0)
 
 
+class SolutionSevenEasy:
+    def change(self, amount: int, coins: List[int]) -> int:
+        temp = [0] * (amount + 1)
+        temp[0] = 1
+        
+        for coin in coins:
+            for i in range(coin, amount+1):
+                temp[i] += temp[i - coin]
+                
+        return temp[amount]
