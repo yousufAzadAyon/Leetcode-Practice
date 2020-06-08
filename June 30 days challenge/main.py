@@ -182,3 +182,13 @@ class SolutionSevenEasy:
                 temp[i] += temp[i - coin]
                 
         return temp[amount]
+
+
+
+        # week 2 day 1
+
+class SolutionEight:
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n <= 0:
+            return 0
+        return (n & (n-1)) == 0
