@@ -210,3 +210,16 @@ class SolutionNine:
             t_pointer += 1
             
         return s_pointer == len(s)
+
+
+        # week two day three
+
+class SolutionTen:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        if target > nums[len(nums) - 1]:
+            return len(nums)
+        
+        for i in range(len(nums)):
+            if nums[i] >= target:
+                return i
+
