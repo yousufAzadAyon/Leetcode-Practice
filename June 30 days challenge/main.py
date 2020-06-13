@@ -313,3 +313,37 @@ class RandomizedSet:
 # param_1 = obj.insert(val)
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
+
+
+            # week two day six
+
+class SolutionTwelve:
+    def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
+        nums.sort()
+        N = len(nums)
+        if N == 0:
+            return []
+        
+        prev = [-1] * N
+        best = [1] * N
+        
+        for index, num in enumerate(nums):
+            for pre_index in range(0, index):
+                pre_num = nums[pre_index]
+                if num % pre_num == 0:
+                    if best[index] < best[pre_index] + 1:
+                        best[index] = best[pre_index] + 1
+                        prev[index] = pre_index
+                        
+        high = 0
+        for index, num in enumerate(best):
+            if best[index] > best[high]:
+                high = index
+                
+        result = []
+        
+        while high != -1:
+            result.append(nums[high])
+            high = prev[high]
+            
+        return result 
