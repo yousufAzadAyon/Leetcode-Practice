@@ -161,3 +161,36 @@ class SolutionFive:
             high = prev[high]
             
         return result 
+
+
+            # week two day seven
+            # 
+class SolutionSeven:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        adj = collections.defaultdict(list)
+        K += 1
+        
+        for u,v,w in flights:
+            adj[u].append((v,w))
+            
+        seen = {}
+        pq = []
+        heapq.heappush(pq, (0,0,src))
+        seen[(src, 0)] = 0
+        
+        while len(pq) > 0:
+            dist, k, city = heapq.heappop(pq)
+            
+            if city == dst:
+                return dist
+            if seen[(city, k)] < dist:
+                continue
+                
+            for v, w in adj[city]:
+                if k + 1 <= K and ((v, k+1) not in seen or seen[(v, k+1)] > dist + w):
+                    heapq.heappush(pq, (dist + w, k+1, v))
+                    seen[(v, k+1)] = dist + w
+                    
+        return -1 
+
+        
