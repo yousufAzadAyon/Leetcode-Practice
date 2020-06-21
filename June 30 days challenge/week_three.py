@@ -165,3 +165,21 @@ class SolutionSix:
             i+=1
         return str(str_n)
 
+            # week three day seven
+
+class SolutionSeven:
+    def calculateMinimumHP(self, dungeon):
+        m, n = len(dungeon), len(dungeon[0])
+        dp = [[0]*(n+1) for _ in range(m+1)]
+        
+        dp[m-1][n], dp[m][n-1] = 1, 1
+        for i in range(m-1): dp[i][n] = float("inf")
+        for j in range(n-1): dp[m][j] = float("inf")
+            
+        for i in range(m-1,-1,-1):
+            for j in range(n-1,-1,-1):
+                dp[i][j] = max(min(dp[i+1][j],dp[i][j+1])-dungeon[i][j],1)
+        
+        return dp[0][0]
+
+        
