@@ -13,3 +13,19 @@ class SolutionOne:
             if j != 3:
                 return i
 
+        # week four day two
+
+class SolutionTwo:
+    def countNodes(self, root: TreeNode) -> int:
+        if root is None: return 0
+        
+        def rec(node, count):
+            if node.left is not None:
+                count = rec(node.left,count+1)
+            if node.right is not None:
+                count = rec(node.right,count+1)
+            return count
+        
+        n_nodes = rec(root, 1)
+        
+        return n_nodes
