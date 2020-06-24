@@ -29,3 +29,26 @@ class SolutionTwo:
         n_nodes = rec(root, 1)
         
         return n_nodes
+
+        # week four day three
+
+class SolutionThree:
+    def numTrees(self, n: int) -> int:
+		# Base case:
+		# 0 nodes = 1 tree
+        # 1 nodes = 1 tree
+		
+        # numTree[4] = numTree[0] * numTree[3] +
+        #              numTree[1] * numTree[2] +
+        #              numTree[2] * numTree[1] +
+        #              numTree[3] * numTree[0]
+		
+        numTree = [1] * (n + 1)
+        for nodes in range(2, n + 1):
+            total = 0
+            for root in range(1, nodes + 1):
+                left = root - 1
+                right = nodes - root
+                total += numTree[left] * numTree[right]
+            numTree[nodes] = total
+        return numTree[n]
