@@ -52,3 +52,12 @@ class SolutionThree:
                 total += numTree[left] * numTree[right]
             numTree[nodes] = total
         return numTree[n]
+
+        # week four day four
+
+class SolutionFour:
+    def findDuplicate(self, nums: List[int]) -> int:
+        sor = sorted(nums)
+        for i in sor:
+            if sor[i] == sor[i-1]:
+                return sor[i]
