@@ -1,4 +1,4 @@
-I will be attempting to solve Leetcode June Challenge problems here.
+I will be attempting to solve Leetcode July Challenge problems here.
 
 Any sort of advice is encouraged.
 
