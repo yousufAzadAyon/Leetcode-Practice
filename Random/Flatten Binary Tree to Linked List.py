@@ -5,12 +5,12 @@ class TreeNode:
         self.left = left
 
 class Solution:
-    def faltten(self, root):
+    def flatten(self, root):
         cur = root
         while cur:
             if cur.left:
                 prev = cur.left
-                while prev.righ:
+                while prev.right:
                     prev = prev.right
 
                 prev.right = cur.right
