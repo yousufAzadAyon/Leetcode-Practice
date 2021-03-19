@@ -6,16 +6,17 @@ class Node:
         self.next = next
 
 class Solution:
-    def connect(self, root):
-        if not root: return
-        queue = [root]
-        while queue:
-            newq = []
-            next = None
-            for node in queue:
-                node.next = next
-                next = node
-                if node.right: newq.append(node.right)
-                if node.left: newq.append(node.left)
-            queue = newq
+    def connect(self, root: 'Node') -> 'Node':
+      if not root:
         return root
+      node = root
+      while node.left:
+        head = node
+        while head:
+          if head.next:
+            leftAdjacent = head.next.left
+            head.right.next = leftAdjacent
+          head.left.next = head.right
+          head = head.next
+        node = node.left
+      return root
