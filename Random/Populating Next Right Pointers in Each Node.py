@@ -6,17 +6,17 @@ class Node:
         self.next = next
 
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
-      if not root:
+    def connect(self, root):
+        if root:
+            temp=[root]
+            while True:
+                if not temp[0].left:
+                    break
+                temp2=[]
+                for e in temp:
+                    temp2.extend([e.left,e.right])
+                L=len(temp2)
+                for l in range(L-1):
+                    temp2[l].next=temp2[l+1]
+                temp=temp2
         return root
-      node = root
-      while node.left:
-        head = node
-        while head:
-          if head.next:
-            leftAdjacent = head.next.left
-            head.right.next = leftAdjacent
-          head.left.next = head.right
-          head = head.next
-        node = node.left
-      return root
