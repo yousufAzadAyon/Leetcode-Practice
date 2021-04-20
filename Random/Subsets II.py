@@ -1,14 +1,18 @@
 class Solution:
-    def combinationSum(self, candidates, target: int):
-        if not candidates: return []
-        res = []
-        candidates.sort()
-        def dfs(idx, path, cur):
-            if cur > target: return
-            if cur == target:
-                res.append(path)
-                return
-            for i in range(idx, len(candidates)):
-                dfs(i, path+[candidates[i]], cur+candidates[i])
-        dfs(0, [], 0)
-        return res
+    def subsetsWithDup(self, nums):
+        result = []
+                
+        def dfs(start, end, cur):
+            result.append( cur[::] )
+            
+            for i in range(start, end+1):
+                
+                if i > start and nums[i] == nums[i-1]:
+                    continue
+                cur.append( nums[i] )
+                dfs(start=i+1, end=end, cur=cur)
+                cur.pop()
+        nums.sort()
+        
+        dfs( start=0, end=len(nums)-1, cur=[] )
+        return result
